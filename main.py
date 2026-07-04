@@ -52,5 +52,5 @@ scheduler.complete_and_reschedule(sw, walk_task)   # complete and auto-schedule 
 
 print("Task count after completing:", len(sw.get_tasks()))
 for t in sw.get_tasks():
-    status = "done" if t.completed else "not done"
+    status = "done" if t.completed else "pending"
     print(f"  {t.description} - {t.task_date} - {status}")
