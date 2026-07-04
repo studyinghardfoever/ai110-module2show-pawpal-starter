@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from datetime import date, timedelta
 
 @dataclass
 class Task:
@@ -6,6 +7,12 @@ class Task:
     time: str
     frequency: str = "once"
     completed: bool = False
+    task_date: date = None
+
+    def __post_init__(self):
+        if self.task_date is None:
+            self.task_date = date.today()
+
 
     def mark_complete(self):
         """Mark this task as completed."""
@@ -103,4 +110,16 @@ class Scheduler:
                 result.append(task)
         return result
     
+    def complete_and_reschedule(self, pet, task):
+        """Mark a task as complete and reschedule it if it's a recurring task."""
+        task.mark_complete()
+        if task.frequency == "daily":
+            next_date = task.task_date + timedelta(days=1)
+        elif task.frequency == "weekly":
+            next_date = task.task_date + timedelta(weeks=1)
+        else:
+            return
+
+        next_task = Task(description=task.description, time=task.time, frequency=task.frequency, task_date=next_date)
+        pet.add_task(next_task)
     
