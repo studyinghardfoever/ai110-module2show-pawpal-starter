@@ -70,8 +70,7 @@ pytest --cov
 Sample test output:
 
 ```
-
-============================= test session starts =============================
+======== test session starts ========
 
 collected 5 items
 tests/test_pawpal.py::test_mark_complete PASSED
@@ -83,7 +82,7 @@ tests/test_pawpal.py::test_sort_by_time PASSED
 tests/test_pawpal.py::test_recurring_daily PASSED
 
 tests/test_pawpal.py::test_conflict PASSED
-============================== 5 passed in 0.07s ==============================
+========= 5 passed in 0.07s ============
 ```
 
 **Confidence Level:** ⭐⭐⭐⭐ (4/5) — All five tests pass, covering the core behaviors (marking complete, adding tasks, sorting, recurrence, conflict detection). I'm confident in the core logic, though edge cases like overlapping-duration conflicts aren't yet handled.
@@ -109,6 +108,4 @@ Describe your app in numbered steps so a reader can follow along without watchin
 4. Under **Add a Task**, pick which pet the task is for, enter a description (e.g., "Morning walk"), a time in HH:MM format, and a frequency (once/daily/weekly), then click "Add Task".
 5. The **Today's Schedule** section automatically shows all tasks sorted by time, with each task's date, pet, species, age, owner, and completion status.
 6. If two tasks are scheduled at the same time, a **Conflicts** section appears with a yellow warning showing which tasks clash.
-
-**Screenshot or video** *(optional)*: <!-- Insert a screenshot or link to a demo video here -->
 
