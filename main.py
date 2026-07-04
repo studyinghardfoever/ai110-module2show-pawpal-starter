@@ -31,7 +31,7 @@ else:
     print("\nNo conflicts detected.")
 
 
-# 测试筛选
+
 print("\n=== Incomplete Tasks ===")
 for task in scheduler.filter_incomplete_tasks():
     print(f"  {task['time']} - {task['description']} ({task['pet_name']})")
@@ -39,3 +39,18 @@ for task in scheduler.filter_incomplete_tasks():
 print("\n=== sw's Tasks ===")
 for task in scheduler.filter_by_pet("sw"):
     print(f"  {task['time']} - {task['description']} ({task['pet_name']})")
+
+
+
+
+# Test recurring tasks: complete a daily task and see if the next one is auto-generated
+print("\n=== Test Recurring Tasks ===")
+walk_task = sw.get_tasks()[0]      # get sw's first task
+print("Task count before completing:", len(sw.get_tasks()))
+
+scheduler.complete_and_reschedule(sw, walk_task)   # complete and auto-schedule next
+
+print("Task count after completing:", len(sw.get_tasks()))
+for t in sw.get_tasks():
+    status = "done" if t.completed else "not done"
+    print(f"  {t.description} - {t.task_date} - {status}")
