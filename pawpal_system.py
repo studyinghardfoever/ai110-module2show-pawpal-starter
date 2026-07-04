@@ -65,6 +65,7 @@ class Scheduler:
                     "completed": task.completed
                 })
         return schedule
+  
     def sort_by_time(self):
         """Sort the tasks in the schedule by time."""
         all_tasks = []
@@ -72,13 +73,19 @@ class Scheduler:
             for task in pet.get_tasks():
                 all_tasks.append({
                     "pet_name": pet.name,
+                    "species": pet.species,          # ← 新增:种类
+                    "age": pet.age,                  # ← 新增:年龄
+                    "owner_name": self.owner.name,   # ← 新增:主人
                     "description": task.description,
                     "time": task.time,
                     "frequency": task.frequency,
-                    "completed": task.completed
+                    "completed": task.completed,
+                    "task_date": task.task_date
                 })
         all_tasks.sort(key=lambda x: x["time"])
         return all_tasks
+
+
     def detect_conflicts(self):
         """Detect any scheduling conflicts among the tasks."""
         sorted_tasks = self.sort_by_time()
